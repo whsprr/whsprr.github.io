@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>whsprr send</title>
+    <style>
+        body {
+            background-size: 100% 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            text-align: center;
+            margin-top: 50px; /* Adjust as needed */
+        }
+
+        #speechBubble {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-style: solid;
+            border-color: #C0C0C0;
+            display: inline-block;
+            position: relative;
+        }
+
+        #arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px;
+            border-color: transparent transparent black transparent;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #emailBody {
+            resize: none;
+        }
+
+        #whsprrButton {
+            margin-top: 10px;
+        }
+    </style>
+  <script>
+      function sanitizeInput(input) {
+          return input.replace(/[^\w\s@#]/g, '');
+      }
+
+      function generateEmailLink() {
+          var subject = "status";
+          var receiver = "whsprr@gmx.com";
+          var body = sanitizeInput(document.getElementById('emailBody').value);
+          var mailtoLink = "mailto:" + receiver + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+          // Open the email link in a new window
+          window.open(mailtoLink, '_blank');
+      }
+  </script>
+
+</head>
+<body>
+    <div id="container">
+        <div id="speechBubble">
+            <b>what you up to?</b><br>
+            <textarea id="emailBody" rows="1" cols="50" maxlength="100"></textarea><br>
+            <button id="whsprrButton" onclick="generateEmailLink()">whsprr it</button>
+        </div>
+    </div>
+</body>
+</html>
